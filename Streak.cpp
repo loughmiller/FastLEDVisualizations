@@ -6,13 +6,17 @@ Streak::Streak (int columns, int rows, CRGB * leds, CRGB color)
   this->length = 0;
   this->color = color;
   this->color.maximizeBrightness();
+  this->minLength = 8;
+  this->maxLength = 16;
+  this->minInterval = 0;
+  this->maxInterval = 90;
 }
 
 void Streak::inititalize() {
   Visualization::inititalize();
-  this->interval = random8(90);
+  this->interval = random8(this->minInterval, this->maxInterval);
   this->column = random8(this->columns);
-  this->length = random8(8, 16);
+  this->length = random8(this->minLength, this->maxLength);
 }
 
 void Streak::display (unsigned long currentTime) {
@@ -44,4 +48,14 @@ void Streak::display (unsigned long currentTime) {
 void Streak::setColor(CRGB color) {
   this->color = color;
   // this->color.maximizeBrightness();
+}
+
+void Streak::setLengthMinMax(int min, int max) {
+  this->minLength = min;
+  this->maxLength = max;
+}
+
+void Streak::setIntervalMinMax(int min, int max) {
+  this->minInterval = min;
+  this->maxInterval = max;
 }
