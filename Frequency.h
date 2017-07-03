@@ -4,13 +4,10 @@
 
 class Frequency : public Visualization {
   private :
-    int column;
-    int length;
     CRGB color;
-    int emptyness;
 
   public :
-    Frequency (int columns, int rows, CRGB * leds, CRGB color);
+    Frequency (uint8_t columns, uint8_t rows, CRGB * leds, CRGB color);
 
-    void display(unsigned long currentTime, int * levels);
+    void display(unsigned long currentTime, uint8_t * levels);
 };

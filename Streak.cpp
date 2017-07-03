@@ -1,6 +1,6 @@
 #include "Streak.h"
 
-Streak::Streak (int columns, int rows, CRGB * leds, CRGB color)
+Streak::Streak (uint8_t columns, uint8_t rows, CRGB * leds, CRGB color)
 : Visualization(columns, rows, leds)
 {
   this->length = 0;
@@ -50,12 +50,12 @@ void Streak::setColor(CRGB color) {
   // this->color.maximizeBrightness();
 }
 
-void Streak::setLengthMinMax(int min, int max) {
+void Streak::setLengthMinMax(uint8_t min, uint8_t max) {
   this->minLength = min;
   this->maxLength = max;
 }
 
-void Streak::setIntervalMinMax(int min, int max) {
+void Streak::setIntervalMinMax(uint8_t min, uint8_t max) {
   this->minInterval = min;
   this->maxInterval = max;
 }

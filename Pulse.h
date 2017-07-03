@@ -12,7 +12,7 @@ class Pulse : public Visualization {
     CRGB color;
 
   public :
-    Pulse(int offset, int count, CRGB * leds, CRGB color);
+    Pulse(uint16_t offset, uint16_t count, CRGB * leds, CRGB color);
 
     void inititalize();
 

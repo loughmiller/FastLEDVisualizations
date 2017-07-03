@@ -1,6 +1,6 @@
 #include "Sparkle.h"
 
-Sparkle::Sparkle (int columns, int rows, CRGB * leds, CRGB color, int emptyness)
+Sparkle::Sparkle (uint8_t columns, uint8_t rows, CRGB * leds, CRGB color, uint16_t emptyness)
 : Visualization(columns, rows, leds)
 {
   this->emptyness = emptyness;
@@ -9,7 +9,7 @@ Sparkle::Sparkle (int columns, int rows, CRGB * leds, CRGB color, int emptyness)
 }
 
 void Sparkle::display () {
-  int i = random(this->emptyness);
+  uint16_t i = random(this->emptyness);
   while (i < this->rows*this->columns) {
     this->leds[i] = this->color;
     i = i + random(this->emptyness);

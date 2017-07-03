@@ -4,15 +4,13 @@
 
 class Sparkle : public Visualization {
   private :
-    int column;
-    int length;
     CRGB color;
-    int emptyness;
+    uint16_t emptyness;
 
   public :
-    Sparkle (int columns, int rows, CRGB * leds, CRGB color, int emptyness);
+    Sparkle (uint8_t columns, uint8_t rows, CRGB * leds, CRGB color, uint16_t emptyness);
 
     void inititalize();
 
-    void display ();
+    void display();
 };

@@ -4,16 +4,16 @@
 
 class Streak : public Visualization {
   private :
-    int column;
-    int length;
-    int minLength;
-    int maxLength;
-    int minInterval;
-    int maxInterval;
+    uint8_t column;
+    uint8_t length;
+    uint8_t minLength;
+    uint8_t maxLength;
+    uint16_t minInterval;
+    uint16_t maxInterval;
     CRGB color;
 
   public :
-    Streak (int columns, int rows, CRGB * leds, CRGB color);
+    Streak (uint8_t columns, uint8_t rows, CRGB * leds, CRGB color);
 
     void inititalize();
 
@@ -21,7 +21,7 @@ class Streak : public Visualization {
 
     void setColor (CRGB color);
 
-    void setLengthMinMax(int min, int max);
+    void setLengthMinMax(uint8_t min, uint8_t max);
 
-    void setIntervalMinMax(int min, int max);
+    void setIntervalMinMax(uint8_t min, uint8_t max);
 };

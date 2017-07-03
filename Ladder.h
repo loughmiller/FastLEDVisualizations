@@ -4,12 +4,10 @@
 
 class Ladder : public Visualization {
   private :
-    int column;
-    int length;
     CRGB color;
 
   public :
-    Ladder (int columns, int rows, CRGB * leds, CRGB color);
+    Ladder (uint8_t columns, uint8_t rows, CRGB * leds, CRGB color);
 
     void inititalize();
 

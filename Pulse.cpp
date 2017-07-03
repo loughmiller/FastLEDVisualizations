@@ -1,6 +1,6 @@
 #include "Pulse.h"
 
-Pulse::Pulse(int offset, int count, CRGB * leds, CRGB color)
+Pulse::Pulse(uint16_t offset, uint16_t count, CRGB * leds, CRGB color)
 : Visualization(0, 0, leds)
 {
   this->offset = offset;
@@ -23,7 +23,7 @@ void Pulse::display (unsigned long currentTime) {
     // FastLED.setBrightness(abs(currentFrame - 72)+8);
   }
 
-  for (int i=this->offset; i<this->offset+this->count; i++) {
+  for (uint16_t i=this->offset; i<this->offset+this->count; i++) {
     leds[i] = this->color;
     leds[i].fadeLightBy(abs(currentFrame - 100));
   }

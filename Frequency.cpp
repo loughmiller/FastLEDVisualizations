@@ -1,6 +1,6 @@
 #include "Frequency.h"
 
-Frequency::Frequency (int columns, int rows, CRGB * leds, CRGB color)
+Frequency::Frequency (uint8_t columns, uint8_t rows, CRGB * leds, CRGB color)
 : Visualization(columns, rows, leds)
 {
   this->interval = 1000;
@@ -9,7 +9,7 @@ Frequency::Frequency (int columns, int rows, CRGB * leds, CRGB color)
   this->nextTime = 0;
 }
 
-void Frequency::display(unsigned long currentTime, int * levels) {
+void Frequency::display(unsigned long currentTime, uint8_t * levels) {
   // FREQ_0
   for(int y=0; y<levels[0]/17; y++) {
     this->leds[this->xy2Pos(0, 15 - y)] = this->color;

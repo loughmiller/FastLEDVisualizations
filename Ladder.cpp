@@ -2,7 +2,7 @@
 
 #define MIN_INTERVAL 2
 
-Ladder::Ladder (int columns, int rows, CRGB * leds, CRGB color)
+Ladder::Ladder (uint8_t columns, uint8_t rows, CRGB * leds, CRGB color)
 : Visualization(columns, rows, leds)
 {
   this->color = color;
@@ -14,7 +14,7 @@ void Ladder::inititalize() {
 }
 
 void Ladder::display (unsigned long currentTime) {
-  int currentFrame = this->frame % this->rows;
+  uint16_t currentFrame = this->frame % this->rows;
 
   if (currentFrame == 0) {
     this->inititalize();
@@ -29,14 +29,14 @@ void Ladder::display (unsigned long currentTime) {
     this->interval = max(this->interval * 0.96, MIN_INTERVAL);
   }
 
-  int y = this->rows - (currentFrame + 1);
+  uint8_t y = this->rows - (currentFrame + 1);
 
   if (y < 0) {
-    for (int i=0; i<this->rows * this->columns; i++) {
+    for (uint8_t i=0; i<this->rows * this->columns; i++) {
       this->leds[i] = color;
     }
   } else {
-    for (int i=0; i<this->columns; i++) {
+    for (uint8_t i=0; i<this->columns; i++) {
       this->leds[xy2Pos(i, y)] = this->color;
     }
   }

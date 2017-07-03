@@ -6,21 +6,21 @@
 
 class Visualization {
   protected :
-    int columns;
-    int rows;
+    uint8_t columns;
+    uint8_t rows;
     CRGB * leds;
-    int frame;
+    uint16_t frame;
     unsigned long nextTime;
-    int interval;
+    uint16_t interval;
 
   public :
-    Visualization (int columns, int rows, CRGB * leds);
+    Visualization (uint8_t columns, uint8_t rows, CRGB * leds);
 
     void inititalize();
 
     void display (unsigned long currentTime);
 
-    int xy2Pos (int x, int y);
+    uint16_t xy2Pos (uint8_t x, uint8_t y);
 };
 
 #endif /* VISUALIZATION_H */
