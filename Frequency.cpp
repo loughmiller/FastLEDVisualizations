@@ -31,20 +31,18 @@ void Frequency::display(unsigned long currentTime, uint8_t * levels) {
   // FREQ_3
   for(int y=0; y<levels[3]/17; y++) {
     this->leds[this->xy2Pos(3, 15 - y)] = this->color;
+    this->leds[this->xy2Pos(8, 15 - y)] = this->color;
   }
 
   // FREQ_4
   for(int y=0; y<levels[4]/17; y++) {
-    this->leds[this->xy2Pos(8, 15 - y)] = this->color;
+    this->leds[this->xy2Pos(4, 15 - y)] = this->color;
   }
 
   // FREQ_5
   for(int y=0; y<levels[5]/17; y++) {
-    this->leds[this->xy2Pos(4, 15 - y)] = this->color;
-  }
-
-  // FREQ_6
-  for(int y=0; y<levels[6]/17; y++) {
     this->leds[this->xy2Pos(9, 15 - y)] = this->color;
   }
+
+  // FREQ_6  // IGNORE this is ~16khz
 }
