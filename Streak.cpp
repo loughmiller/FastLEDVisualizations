@@ -36,11 +36,11 @@ void Streak::display (unsigned long currentTime) {
 
   int y = currentFrame;
   int pos;
-  for (int i=0; i<this->length; i++) {
+  for (uint8_t i=0; i<this->length; i++) {
     if ((y - i >= 0) && (y - i < this->rows)) {
       pos = this->xy2Pos(this->column, y - i);
       this->leds[pos] = this->color;
-      this->leds[pos].fadeToBlackBy((256 / this->length) * i);
+      this->leds[pos].fadeLightBy((256 / this->length) * i);
     }
   }
 }
