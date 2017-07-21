@@ -1,6 +1,6 @@
 #include "Visualization.h"
 
-Visualization::Visualization (uint8_t columns, uint8_t rows, CRGB * leds) {
+Visualization::Visualization (uint16_t columns, uint16_t rows, CRGB * leds) {
   this->columns = columns;
   this->rows = rows;
   this->leds = leds;
@@ -13,7 +13,7 @@ void Visualization::inititalize() {
   this->nextTime = 0;
 }
 
-uint16_t Visualization::xy2Pos (uint8_t x, uint8_t y) {
+uint16_t Visualization::xy2Pos (uint16_t x, uint16_t y) {
   uint16_t pos = x * this->rows;
   if (x % 2 == 0) {
     pos = pos + y;

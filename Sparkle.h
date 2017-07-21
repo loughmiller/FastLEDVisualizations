@@ -8,7 +8,7 @@ class Sparkle : public Visualization {
     uint16_t emptyness;
 
   public :
-    Sparkle (uint8_t columns, uint8_t rows, CRGB * leds, CRGB color, uint16_t emptyness);
+    Sparkle (uint16_t columns, uint16_t rows, CRGB * leds, CRGB color, uint16_t emptyness);
 
     void inititalize();
 
