@@ -11,11 +11,6 @@ Sparkle::Sparkle (uint16_t columns, uint16_t rows, CRGB * leds, CRGB color, uint
 void Sparkle::display () {
   uint16_t i = random(this->emptyness);
   while (i < this->rows*this->columns) {
-    Serial.print(this->rows);
-    Serial.print(' ');
-    Serial.print(this->columns);
-    Serial.print(' ');
-    Serial.println(i);
     this->leds[i] = this->color;
     i = i + random(this->emptyness);
   }
