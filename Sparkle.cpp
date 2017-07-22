@@ -1,7 +1,7 @@
 #include "Sparkle.h"
 
 Sparkle::Sparkle (uint16_t columns, uint16_t rows, CRGB * leds, CRGB color, uint16_t emptyness)
-: Visualization(columns, rows, leds)
+: Visualization(columns, rows, leds, color)
 {
   this->emptyness = emptyness;
   this->color = color;

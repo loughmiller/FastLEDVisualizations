@@ -4,7 +4,6 @@
 
 class Sparkle : public Visualization {
   private :
-    CRGB color;
     uint16_t emptyness;
 
   public :

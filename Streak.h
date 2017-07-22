@@ -10,7 +10,6 @@ class Streak : public Visualization {
     uint8_t maxLength;
     uint16_t minInterval;
     uint16_t maxInterval;
-    CRGB color;
 
   public :
     Streak (uint8_t columns, uint8_t rows, CRGB * leds, CRGB color);
@@ -18,8 +17,6 @@ class Streak : public Visualization {
     void inititalize();
 
     void display (unsigned long currentTime);
-
-    void setColor (CRGB color);
 
     void setLengthMinMax(uint8_t min, uint8_t max);
 

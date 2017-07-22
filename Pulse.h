@@ -9,7 +9,6 @@ class Pulse : public Visualization {
     int column;
     int length;
     int interval;
-    CRGB color;
 
   public :
     Pulse(uint16_t offset, uint16_t count, CRGB * leds, CRGB color);

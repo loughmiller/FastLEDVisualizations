@@ -1,10 +1,9 @@
 #include "Streak.h"
 
 Streak::Streak (uint8_t columns, uint8_t rows, CRGB * leds, CRGB color)
-: Visualization(columns, rows, leds)
+: Visualization(columns, rows, leds, color)
 {
   this->length = 0;
-  this->color = color;
   this->color.maximizeBrightness();
   this->minLength = 8;
   this->maxLength = 16;
@@ -43,11 +42,6 @@ void Streak::display (unsigned long currentTime) {
       this->leds[pos].fadeLightBy((256 / this->length) * i);
     }
   }
-}
-
-void Streak::setColor(CRGB color) {
-  this->color = color;
-  // this->color.maximizeBrightness();
 }
 
 void Streak::setLengthMinMax(uint8_t min, uint8_t max) {

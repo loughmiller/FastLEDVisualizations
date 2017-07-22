@@ -3,9 +3,7 @@
 #define MIN_INTERVAL 2
 
 Ladder::Ladder (uint8_t columns, uint8_t rows, CRGB * leds, CRGB color)
-: Visualization(columns, rows, leds)
-{
-  this->color = color;
+: Visualization(columns, rows, leds, color) {
 }
 
 void Ladder::inititalize() {

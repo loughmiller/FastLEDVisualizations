@@ -1,11 +1,10 @@
 #include "Pulse.h"
 
 Pulse::Pulse(uint16_t offset, uint16_t count, CRGB * leds, CRGB color)
-: Visualization(0, 0, leds)
+: Visualization(0, 0, leds, color)
 {
   this->offset = offset;
   this->count = count;
-  this->color = color;
   this->color.maximizeBrightness();
   this->interval = 10;
   this->nextTime = 0;
@@ -25,6 +24,6 @@ void Pulse::display (unsigned long currentTime) {
 
   for (uint16_t i=this->offset; i<this->offset+this->count; i++) {
     leds[i] = this->color;
-    leds[i].fadeLightBy(abs(currentFrame - 100));
+    leds[i].fadeToBlackBy(abs(currentFrame - 100));
   }
 }
