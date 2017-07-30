@@ -4,9 +4,8 @@ Spinner::Spinner (uint8_t ledCount, CRGB * leds, CRGB color)
 : Visualization(1, ledCount, leds, color)
 {
   this->ledCount = ledCount;
-  this->length = 10;
+  this->length = 9;
   this->interval = 45;
-  this->color.maximizeBrightness();
 }
 
 void Spinner::inititalize() {
