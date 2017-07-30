@@ -3,8 +3,9 @@
 Spinner::Spinner (uint8_t ledCount, CRGB * leds, CRGB color)
 : Visualization(1, ledCount, leds, color)
 {
-  this->length = 12;
-  this->interval = 40;
+  this->ledCount = ledCount;
+  this->length = 10;
+  this->interval = 45;
   this->color.maximizeBrightness();
 }
 
@@ -13,9 +14,7 @@ void Spinner::inititalize() {
 }
 
 void Spinner::display (unsigned long currentTime) {
-  int currentFrame = this->frame % (this->rows + this->length);
-
-  if (currentFrame == 0) {
+  if (this->frame == 0) {
     this->inititalize();
   }
 
@@ -27,11 +26,9 @@ void Spinner::display (unsigned long currentTime) {
     this->nextTime = currentTime + this->interval;
   }
 
-  int y = currentFrame;
-  int pos;
   for (uint8_t i=0; i<this->length; i++) {
-    if ((y - i >= 0) && (y - i < this->rows)) {
-      pos = this->xy2Pos(this->column, y - i);
+    if ((this->frame - i) > 0) {
+      int pos = (this->frame - i) % this->ledCount;
       this->leds[pos] = this->color;
       this->leds[pos].fadeLightBy((256 / this->length) * i);
     }
