@@ -4,7 +4,6 @@ Sparkle::Sparkle (uint16_t columns, uint16_t rows, CRGB * leds, CRGB color, uint
 : Visualization(columns, rows, leds, color)
 {
   this->emptyness = emptyness;
-  this->color = color;
   this->color.maximizeBrightness();
 }
 
