@@ -39,7 +39,10 @@ void Streak::display (unsigned long currentTime) {
     if ((y - i >= 0) && (y - i < this->rows)) {
       pos = this->xy2Pos(this->column, y - i);
       this->leds[pos] = this->color;
-      this->leds[pos].fadeLightBy((256 / this->length) * i);
+
+      if (this->fade) {
+        this->leds[pos].fadeLightBy((256 / this->length) * i);
+      }
     }
   }
 }
@@ -52,4 +55,8 @@ void Streak::setLengthMinMax(uint8_t min, uint8_t max) {
 void Streak::setIntervalMinMax(uint8_t min, uint8_t max) {
   this->minInterval = min;
   this->maxInterval = max;
+}
+
+void Streak::setFade(bool on) {
+  this->fade = on;
 }
