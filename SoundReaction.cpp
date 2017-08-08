@@ -6,7 +6,7 @@ SoundReaction::SoundReaction(uint16_t start, uint16_t end, CRGB * leds, CRGB onC
   this->start = start;
   this->end = end;
   this->onColor = onColor;
-  this->offColor = offColor.fadeLightBy(244);
+  this->offColor = offColor;
 }
 
 void SoundReaction::display(float intensity) {
