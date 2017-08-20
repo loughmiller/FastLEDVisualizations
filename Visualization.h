@@ -24,6 +24,8 @@ class Visualization {
     uint16_t xy2Pos (uint16_t x, uint16_t y);
 
     void setColor (CRGB color);
+
+    void setInterval(uint16_t interval);
 };
 
 #endif /* VISUALIZATION_H */

@@ -29,3 +29,7 @@ void Visualization::setColor(CRGB color) {
   this->color = color;
   // this->color.maximizeBrightness();
 }
+
+void Visualization::setInterval(uint16_t interval) {
+  this->interval = interval;
+}
