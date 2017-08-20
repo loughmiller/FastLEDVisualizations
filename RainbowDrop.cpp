@@ -3,7 +3,6 @@
 RainbowDrop::RainbowDrop (uint16_t columns, uint16_t rows, CRGB * leds)
 : Visualization(columns, rows, leds, 0x000000)
 {
-  this->interval = 50;
   this->rowStep = (int)(255.0 / (float)this->rows);
   this->columnStep = (int)(255.0 / (float)this->columns);
   this->lastBeat = false;
