@@ -1,7 +1,7 @@
 #include "RainbowDrop.h"
 
-RainbowDrop::RainbowDrop(uint8_t columns, uint8_t rows, CRGB * leds)
-: Visualization(columns, rows, 0, 0, leds)
+RainbowDrop::RainbowDrop(uint8_t columns, uint8_t rows, uint8_t saturation, CRGB * leds)
+: Visualization(columns, rows, 0, saturation, leds)
 {
   this->rowStep = (int)(255.0 / (float)this->rows);
   this->columnStep = (int)(255.0 / (float)this->columns);
@@ -50,7 +50,7 @@ void RainbowDrop::display (unsigned long currentTime, float intensity) {
     for (uint8_t x=0; x<this->columns; x++) {
       // uint8_t columnOffset = this->columnStep * x;
       uint8_t hue = timeOffset + rowOffset;
-      CHSV c(hue, 234, 255);
+      CHSV c(hue, this->saturation, 255);
       leds[xy2Pos(x, y)] = c;
     }
   }
