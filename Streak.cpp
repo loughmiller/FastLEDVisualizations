@@ -18,6 +18,9 @@ void Streak::inititalize() {
   this->interval = random8(this->minInterval, this->maxInterval);
   this->column = random8(this->columns);
   this->length = random8(this->minLength, this->maxLength);
+  if (this->randomHue) {
+    this->setHue(random(256));
+  }
 }
 
 void Streak::display (unsigned long currentTime) {
@@ -61,4 +64,8 @@ void Streak::setIntervalMinMax(uint8_t min, uint8_t max) {
 
 void Streak::setFade(bool on) {
   this->fade = on;
+}
+
+void Streak::setRandomHue(bool on) {
+  this->randomHue = on;
 }

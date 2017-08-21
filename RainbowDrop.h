@@ -4,7 +4,6 @@
 
 class RainbowDrop : public Visualization {
   private :
-    uint8_t interval;
     uint8_t rowStep;
     uint8_t columnStep;
     bool lastBeat;

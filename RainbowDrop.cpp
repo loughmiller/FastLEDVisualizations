@@ -19,13 +19,11 @@ void RainbowDrop::display (unsigned long currentTime, float intensity) {
   int currentFrame = this->frame % 255;
 
   if (currentTime > this->nextTime) {
-    // Serial.print(this->id);
-    // Serial.print(": ");
     // Serial.print(currentTime);
     // Serial.print(" - ");
-    // Serial.print(beat);
+    // Serial.print(this->interval);
     // Serial.print(" - ");
-    // Serial.println(this->lastBeat);
+    // Serial.println(this->nextTime);
 
     this->lastBeat2 = this->lastBeat;
 
@@ -40,7 +38,7 @@ void RainbowDrop::display (unsigned long currentTime, float intensity) {
       this->frame++;
     }
 
-    this->nextTime += this->interval;
+    this->nextTime = currentTime + this->interval;
   }
 
   uint8_t timeOffset = 255 - currentFrame;

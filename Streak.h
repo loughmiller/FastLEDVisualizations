@@ -11,6 +11,7 @@ class Streak : public Visualization {
     uint16_t minInterval;
     uint16_t maxInterval;
     bool fade;
+    bool randomHue;
 
   public :
     Streak(uint16_t columns,
@@ -20,12 +21,9 @@ class Streak : public Visualization {
       CRGB * leds);
 
     void inititalize();
-
     void display(unsigned long currentTime);
-
     void setLengthMinMax(uint8_t min, uint8_t max);
-
     void setIntervalMinMax(uint8_t min, uint8_t max);
-
     void setFade(bool on);
+    void setRandomHue(bool on);
 };
