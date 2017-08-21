@@ -7,7 +7,6 @@ RainbowDrop::RainbowDrop(uint8_t columns, uint8_t rows, CRGB * leds)
   this->columnStep = (int)(255.0 / (float)this->columns);
   this->lastBeat = false;
   this->lastBeat2 = false;
-  this->inititalize();
   this->nextTime = millis();
 }
 

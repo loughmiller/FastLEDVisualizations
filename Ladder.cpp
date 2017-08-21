@@ -11,7 +11,6 @@ Ladder::Ladder(uint8_t columns,
 }
 
 void Ladder::inititalize() {
-  Visualization::inititalize();
   this->interval = random16(256, 512);;
 }
 

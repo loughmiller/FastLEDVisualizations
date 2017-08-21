@@ -15,7 +15,6 @@ Streak::Streak(uint16_t columns,
 }
 
 void Streak::inititalize() {
-  Visualization::inititalize();
   this->interval = random8(this->minInterval, this->maxInterval);
   this->column = random8(this->columns);
   this->length = random8(this->minLength, this->maxLength);

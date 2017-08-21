@@ -1,19 +1,14 @@
 #include "Spinner.h"
 
-Spinner::Spinner(uint16_t columns,
-  uint16_t rows,
+Spinner::Spinner(uint16_t ledCount,
   uint8_t hue,
   uint8_t saturation,
   CRGB * leds)
-: Visualization(1, rows, hue, saturation, leds)
+: Visualization(ledCount, 1, hue, saturation, leds)
 {
-  this->ledCount = rows;
+  this->ledCount = ledCount;
   this->length = 8;
-  this->interval = 50;
-}
-
-void Spinner::inititalize() {
-  Visualization::inititalize();
+  this->interval = 40;
 }
 
 void Spinner::display (unsigned long currentTime) {

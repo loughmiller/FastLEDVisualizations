@@ -23,7 +23,6 @@ class Visualization {
       uint8_t hue,
       uint8_t saturation,
       CRGB * leds);
-    void inititalize();
     void display(unsigned long currentTime);
     void setLEDColorXY(uint16_t x, uint16_t y);
     void setLEDColor(uint16_t pos);
@@ -31,6 +30,8 @@ class Visualization {
     void setHue(uint8_t hue);
     void setSaturation(uint8_t saturation);
     void setInterval(uint16_t interval);
+    void setAllHue(uint8_t hue);
+    void setAllCRGB(CRGB c);
 };
 
 #endif /* VISUALIZATION_H */

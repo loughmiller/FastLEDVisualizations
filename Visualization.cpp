@@ -11,14 +11,10 @@ Visualization::Visualization(uint16_t columns,
   this->hue = hue;
   this->saturation = saturation;
   this->frame = 0;
+  this->nextTime = 0;
   this->interval = 20;
 
   this->color = CHSV(hue, saturation, 255);
-}
-
-void Visualization::inititalize() {
-  this->frame = 0;
-  this->nextTime = 0;
 }
 
 void Visualization::setLEDColorXY(uint16_t x, uint16_t y) {
@@ -52,4 +48,17 @@ void Visualization::setSaturation(uint8_t saturation) {
 
 void Visualization::setInterval(uint16_t interval) {
   this->interval = interval;
+}
+
+void Visualization::setAllHue(uint8_t hue) {
+  this->setAllCRGB(CHSV(hue, this->saturation, 255));
+}
+
+void Visualization::setAllCRGB(CRGB c) {
+  for (uint16_t y=0; y<this->columns; y++) {
+    for (uint16_t x=0; x<this->rows; x++) {
+      uint16_t pos = this->xy2Pos(x, y);
+      this->leds[pos] = c;
+    }
+  }
 }
