@@ -55,8 +55,8 @@ void Visualization::setAllHue(uint8_t hue) {
 }
 
 void Visualization::setAllCRGB(CRGB c) {
-  for (uint16_t y=0; y<this->columns; y++) {
-    for (uint16_t x=0; x<this->rows; x++) {
+  for (uint16_t y=0; y<this->rows; y++) {
+    for (uint16_t x=0; x<this->columns; x++) {
       uint16_t pos = this->xy2Pos(x, y);
       this->leds[pos] = c;
     }
