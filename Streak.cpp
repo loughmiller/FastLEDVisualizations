@@ -1,10 +1,13 @@
 #include "Streak.h"
 
-Streak::Streak (uint8_t columns, uint8_t rows, CRGB * leds, CRGB color)
-: Visualization(columns, rows, leds, color)
+Streak::Streak(uint16_t columns,
+  uint16_t rows,
+  uint8_t hue,
+  uint8_t saturation,
+  CRGB * leds)
+: Visualization(columns, rows, hue, saturation, leds)
 {
   this->length = 0;
-  this->color.maximizeBrightness();
   this->minLength = 8;
   this->maxLength = 16;
   this->minInterval = 0;

@@ -1,7 +1,11 @@
 #include "Pulse.h"
 
-Pulse::Pulse(uint16_t offset, uint16_t count, CRGB * leds, CRGB color)
-: Visualization(0, 0, leds, color)
+Pulse::Pulse(uint8_t columns,
+  uint8_t rows,
+  uint8_t hue,
+  uint8_t saturation,
+  CRGB * leds)
+: Visualization(0, 0, hue, saturation, leds)
 {
   this->offset = offset;
   this->count = count;

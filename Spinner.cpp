@@ -1,9 +1,13 @@
 #include "Spinner.h"
 
-Spinner::Spinner (uint8_t ledCount, CRGB * leds, CRGB color)
-: Visualization(1, ledCount, leds, color)
+Spinner::Spinner(uint16_t columns,
+  uint16_t rows,
+  uint8_t hue,
+  uint8_t saturation,
+  CRGB * leds)
+: Visualization(1, rows, hue, saturation, leds)
 {
-  this->ledCount = ledCount;
+  this->ledCount = rows;
   this->length = 8;
   this->interval = 50;
 }
@@ -13,14 +17,7 @@ void Spinner::inititalize() {
 }
 
 void Spinner::display (unsigned long currentTime) {
-  if (this->frame == 0) {
-    this->inititalize();
-  }
-
   if (currentTime > this->nextTime) {
-    // Serial.print(this->id);
-    // Serial.print(": ");
-    // Serial.println(currentTime);
     this->frame++;
     this->nextTime = currentTime + this->interval;
   }

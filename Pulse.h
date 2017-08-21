@@ -11,7 +11,11 @@ class Pulse : public Visualization {
     int interval;
 
   public :
-    Pulse(uint16_t offset, uint16_t count, CRGB * leds, CRGB color);
+    Pulse(uint8_t columns,
+      uint8_t rows,
+      uint8_t hue,
+      uint8_t saturation,
+      CRGB * leds);
 
     void inititalize();
 

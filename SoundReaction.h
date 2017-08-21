@@ -6,12 +6,17 @@ class SoundReaction : public Visualization {
   private :
     uint16_t start;
     uint16_t end;
-    CRGB onColor;
-    CRGB offColor;
+    uint8_t onHue;
+    uint8_t offHue;
 
   public :
-    SoundReaction(uint16_t start, uint16_t end, CRGB * leds, CRGB onColor, CRGB offColor);
+    SoundReaction(uint8_t start,
+      uint8_t stop,
+      uint8_t onHue,
+      uint8_t offHue,
+      uint8_t saturation,
+      CRGB * leds);
     void display(float intensity);
-    void setOnColor (CRGB color);
-    void setOffColor (CRGB color);
+    void setOnHue(uint8_t hue);
+    void setOffHue(uint8_t hue);
 };

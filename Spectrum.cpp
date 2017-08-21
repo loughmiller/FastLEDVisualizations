@@ -2,15 +2,14 @@
 
 Spectrum::Spectrum(uint16_t columns,
   uint16_t rows,
-  uint16_t rowOffset,
-  bool invert,
-  CRGB * leds,
   uint8_t hue,
-  uint8_t travel)
-: Visualization(columns, rows, leds, CHSV(hue, 245, 255)) {
+  uint8_t saturation,
+  bool invert,
+  uint8_t travel,
+  CRGB * leds)
+: Visualization(columns, rows, hue, saturation, leds) {
   this->rowOffset = rowOffset;
   this->invert = invert;
-  this->hue = hue;
   this->travel = travel;
 }
 

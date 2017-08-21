@@ -11,6 +11,6 @@ class RainbowDrop : public Visualization {
     bool lastBeat2;
 
   public :
-    RainbowDrop (uint16_t columns, uint16_t rows, CRGB * leds);
+    RainbowDrop(uint8_t columns, uint8_t rows, CRGB * leds);
     void display(unsigned long int currentTime, float intensity);
 };

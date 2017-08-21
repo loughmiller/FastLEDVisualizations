@@ -1,7 +1,11 @@
 #include "Frequency.h"
 
-Frequency::Frequency (uint8_t columns, uint8_t rows, CRGB * leds, CRGB color)
-: Visualization(columns, rows, leds, color)
+Frequency::Frequency(uint8_t columns,
+  uint8_t rows,
+  uint8_t hue,
+  uint8_t saturation,
+  CRGB * leds)
+: Visualization(columns, rows, hue, saturation, leds)
 {
   this->interval = 1000;
   this->color.maximizeBrightness();

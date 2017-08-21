@@ -1,16 +1,21 @@
 #include "SoundReaction.h"
 
-SoundReaction::SoundReaction(uint16_t start, uint16_t end, CRGB * leds, CRGB onColor, CRGB offColor)
-: Visualization(0, 0, leds, onColor)
+SoundReaction::SoundReaction(uint8_t start,
+  uint8_t stop,
+  uint8_t onHue,
+  uint8_t offHue,
+  uint8_t saturation,
+  CRGB * leds)
+: Visualization(0, 0, onHue, saturation, leds)
 {
   this->start = start;
   this->end = end;
-  this->onColor = onColor;
-  this->offColor = offColor;
+  this->onHue = onHue;
+  this->offHue = offHue;
 }
 
 void SoundReaction::display(float intensity) {
-  CRGB onColor = this->onColor;
+  CRGB onColor = this->color;
   if (intensity > 0.85) {
     intensity = (intensity - 0.5) / 0.5;
     onColor.fadeLightBy((1-(intensity)) * 256);
@@ -18,16 +23,17 @@ void SoundReaction::display(float intensity) {
       leds[i] = onColor;
     }
   } else {
+    CRGB offColor = CHSV(this->offHue, this->saturation, 24);
     for (int i=this->start; i<this->end; i++) {
-      leds[i] = this->offColor;
+      leds[i] = offColor;
     }
   }
 }
 
-void SoundReaction::setOnColor(CRGB color) {
-  this->onColor = color;
+void SoundReaction::setOnHue(uint8_t hue) {
+  this->onHue = hue;
 }
 
-void SoundReaction::setOffColor(CRGB color) {
-  this->offColor = color.fadeLightBy(244);
+void SoundReaction::setOffHue(uint8_t hue) {
+  this->offHue = hue;
 }

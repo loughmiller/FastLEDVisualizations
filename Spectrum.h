@@ -12,10 +12,10 @@ class Spectrum : public Visualization {
   public :
     Spectrum(uint16_t columns,
       uint16_t rows,
-      uint16_t rowOffset,       // row to start on
-      bool invert,              // false = rowOffset++, true = rowOffset--
-      CRGB * leds,
       uint8_t hue,
-      uint8_t travel);
+      uint8_t saturation,
+      bool invert,
+      uint8_t travel,
+      CRGB * leds);
     void display(float * intensity);
 };

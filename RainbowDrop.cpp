@@ -1,7 +1,7 @@
 #include "RainbowDrop.h"
 
-RainbowDrop::RainbowDrop (uint16_t columns, uint16_t rows, CRGB * leds)
-: Visualization(columns, rows, leds, 0x000000)
+RainbowDrop::RainbowDrop(uint8_t columns, uint8_t rows, CRGB * leds)
+: Visualization(columns, rows, 0, 0, leds)
 {
   this->rowStep = (int)(255.0 / (float)this->rows);
   this->columnStep = (int)(255.0 / (float)this->columns);

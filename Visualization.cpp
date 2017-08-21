@@ -1,12 +1,19 @@
 #include "Visualization.h"
 
-Visualization::Visualization (uint16_t columns, uint16_t rows, CRGB * leds, CRGB color) {
+Visualization::Visualization(uint16_t columns,
+  uint16_t rows,
+  uint8_t hue,
+  uint8_t saturation,
+  CRGB * leds) {
   this->columns = columns;
   this->rows = rows;
   this->leds = leds;
-  this->color = color;
+  this->hue = hue;
+  this->saturation = saturation;
   this->frame = 0;
   this->interval = 20;
+
+  this->color = CHSV(hue, saturation, 255);
 }
 
 void Visualization::inititalize() {
@@ -14,7 +21,15 @@ void Visualization::inititalize() {
   this->nextTime = 0;
 }
 
-uint16_t Visualization::xy2Pos (uint16_t x, uint16_t y) {
+void Visualization::setLEDColorXY(uint16_t x, uint16_t y) {
+  this->setLEDColor(xy2Pos(x, y));
+}
+
+void Visualization::setLEDColor(uint16_t pos) {
+  this->leds[pos] = this->color;
+}
+
+uint16_t Visualization::xy2Pos(uint16_t x, uint16_t y) {
   uint16_t pos = x * this->rows;
   if (x % 2 == 0) {
     pos = pos + y;
@@ -25,9 +40,14 @@ uint16_t Visualization::xy2Pos (uint16_t x, uint16_t y) {
   return pos;
 }
 
-void Visualization::setColor(CRGB color) {
-  this->color = color;
-  // this->color.maximizeBrightness();
+void Visualization::setHue(uint8_t hue) {
+  this->hue = hue;
+  this->color = CHSV(this->hue, this->saturation, 255);
+}
+
+void Visualization::setSaturation(uint8_t saturation) {
+  this->saturation = saturation;
+  this->color = CHSV(this->hue, this->saturation, 255);
 }
 
 void Visualization::setInterval(uint16_t interval) {

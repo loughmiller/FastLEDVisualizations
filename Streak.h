@@ -13,11 +13,15 @@ class Streak : public Visualization {
     bool fade;
 
   public :
-    Streak (uint8_t columns, uint8_t rows, CRGB * leds, CRGB color);
+    Streak(uint16_t columns,
+      uint16_t rows,
+      uint8_t hue,
+      uint8_t saturation,
+      CRGB * leds);
 
     void inititalize();
 
-    void display (unsigned long currentTime);
+    void display(unsigned long currentTime);
 
     void setLengthMinMax(uint8_t min, uint8_t max);
 
