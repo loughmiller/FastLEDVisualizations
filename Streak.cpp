@@ -12,6 +12,8 @@ Streak::Streak(uint16_t columns,
   this->maxLength = 16;
   this->minInterval = 0;
   this->maxInterval = 90;
+  this->randomHue = false;
+  this->fade = true;
 }
 
 void Streak::inititalize() {
