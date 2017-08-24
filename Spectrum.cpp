@@ -2,6 +2,7 @@
 
 Spectrum::Spectrum(uint16_t columns,
   uint16_t rows,
+  uint16_t rowOffset,
   uint8_t hue,
   uint8_t saturation,
   bool invert,
@@ -16,11 +17,11 @@ Spectrum::Spectrum(uint16_t columns,
 void Spectrum::display(float* intensities) {
   for (uint8_t y=0; y<this->rows - this->rowOffset; y++) {
     float intensity = intensities[y+2];
-    if (intensity < 0.5) {
+    if (intensity < 0.3) {
       continue;
     }
 
-    intensity = (intensity - 0.5) * 2.0;
+    intensity = (intensity - 0.3) * (0.3/1.0);
     uint8_t hue = (this->travel * intensity) + this->hue;
 
     CRGB c = CHSV(hue, 245, 255);
@@ -32,4 +33,8 @@ void Spectrum::display(float* intensities) {
       }
     }
   }
+}
+
+void Spectrum::setTravel(uint8_t travel) {
+  this->travel = travel;
 }
