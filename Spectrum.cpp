@@ -24,7 +24,7 @@ void Spectrum::display(float* intensities) {
     intensity = (intensity - (0.3)) / 0.7;
     uint8_t hue = (this->travel * intensity) + this->hue;
 
-    CRGB c = CHSV(hue, 245, 255);
+    CRGB c = CHSV(hue, this->saturation, 255);
     for (uint8_t x=0; x<this->columns; x++) {
       if (this->invert) {
         leds[this->xy2Pos(x, this->rowOffset - y)] = c;
