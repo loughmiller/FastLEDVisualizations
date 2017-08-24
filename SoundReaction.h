@@ -10,8 +10,8 @@ class SoundReaction : public Visualization {
     uint8_t offHue;
 
   public :
-    SoundReaction(uint8_t start,
-      uint8_t stop,
+    SoundReaction(uint16_t start,
+      uint16_t stop,
       uint8_t onHue,
       uint8_t offHue,
       uint8_t saturation,

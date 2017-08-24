@@ -1,7 +1,7 @@
 #include "SoundReaction.h"
 
-SoundReaction::SoundReaction(uint8_t start,
-  uint8_t stop,
+SoundReaction::SoundReaction(uint16_t start,
+  uint16_t end,
   uint8_t onHue,
   uint8_t offHue,
   uint8_t saturation,
@@ -20,18 +20,18 @@ void SoundReaction::display(float intensity) {
     intensity = (intensity - 0.5) / 0.5;
     onColor.fadeLightBy((1-(intensity)) * 256);
     for (int i=this->start; i<this->end; i++) {
-      leds[i] = onColor;
+      this->leds[i] = onColor;
     }
   } else {
-    CRGB offColor = CHSV(this->offHue, this->saturation, 24);
+    CRGB offColor = CHSV(this->offHue, this->saturation, 80);
     for (int i=this->start; i<this->end; i++) {
-      leds[i] = offColor;
+      this->leds[i] = offColor;
     }
   }
 }
 
 void SoundReaction::setOnHue(uint8_t hue) {
-  this->onHue = hue;
+  this->setHue(hue);
 }
 
 void SoundReaction::setOffHue(uint8_t hue) {
