@@ -41,6 +41,10 @@ void Visualization::setHue(uint8_t hue) {
   this->color = CHSV(this->hue, this->saturation, 255);
 }
 
+uint8_t Visualization::getHue() {
+  return this->hue;
+}
+
 void Visualization::setSaturation(uint8_t saturation) {
   this->saturation = saturation;
   this->color = CHSV(this->hue, this->saturation, 255);
