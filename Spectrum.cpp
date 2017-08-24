@@ -21,7 +21,7 @@ void Spectrum::display(float* intensities) {
       continue;
     }
 
-    intensity = (intensity - 0.3) * (0.3/1.0);
+    intensity = (intensity - (0.3)) / 0.7;
     uint8_t hue = (this->travel * intensity) + this->hue;
 
     CRGB c = CHSV(hue, 245, 255);
