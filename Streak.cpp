@@ -17,6 +17,12 @@ Streak::Streak(uint16_t columns,
 }
 
 void Streak::inititalize() {
+<<<<<<< Updated upstream
+=======
+  Serial.print("inititalize - ");
+  Serial.println(this->frame);
+  this->frame = 0;
+>>>>>>> Stashed changes
   this->interval = random8(this->minInterval, this->maxInterval);
   this->column = random8(this->columns);
   this->length = random8(this->minLength, this->maxLength);
@@ -26,21 +32,17 @@ void Streak::inititalize() {
 }
 
 void Streak::display (unsigned long currentTime) {
-  int currentFrame = this->frame % (this->rows + this->length);
-
-  if (currentFrame == 0) {
-    this->inititalize();
-  }
-
   if (currentTime > this->nextTime) {
-    // Serial.print(this->id);
-    // Serial.print(": ");
-    // Serial.println(currentTime);
+    Serial.println(this->frame);
     this->frame++;
     this->nextTime = currentTime + this->interval;
+
+    if (this->frame > (this->rows + this->length)) {
+      this->inititalize();
+    }
   }
 
-  int y = currentFrame;
+  int y = this->frame;
   int pos;
   for (uint8_t i=0; i<this->length; i++) {
     if ((y - i >= 0) && (y - i < this->rows)) {
