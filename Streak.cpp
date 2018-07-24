@@ -17,12 +17,9 @@ Streak::Streak(uint16_t columns,
 }
 
 void Streak::inititalize() {
-<<<<<<< Updated upstream
-=======
-  Serial.print("inititalize - ");
-  Serial.println(this->frame);
+  // Serial.print("inititalize - ");
+  // Serial.println(this->frame);
   this->frame = 0;
->>>>>>> Stashed changes
   this->interval = random8(this->minInterval, this->maxInterval);
   this->column = random8(this->columns);
   this->length = random8(this->minLength, this->maxLength);
