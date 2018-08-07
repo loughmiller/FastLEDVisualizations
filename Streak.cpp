@@ -30,7 +30,7 @@ void Streak::inititalize() {
 
 void Streak::display (unsigned long currentTime) {
   if (currentTime > this->nextTime) {
-    Serial.println(this->frame);
+    // Serial.println(this->frame);
     this->frame++;
     this->nextTime = currentTime + this->interval;
 
