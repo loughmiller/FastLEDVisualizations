@@ -10,6 +10,7 @@ class Streak : public Visualization {
     uint8_t maxLength;
     uint16_t minInterval;
     uint16_t maxInterval;
+    uint32_t startTime;
     bool fade;
     bool randomHue;
 
@@ -20,7 +21,7 @@ class Streak : public Visualization {
       uint8_t saturation,
       CRGB * leds);
 
-    void inititalize();
+    void inititalize(unsigned long currentTime);
     void display(unsigned long currentTime);
     void setLengthMinMax(uint8_t min, uint8_t max);
     void setIntervalMinMax(uint8_t min, uint8_t max);
