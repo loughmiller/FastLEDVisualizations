@@ -3,6 +3,7 @@
 Spectrum::Spectrum(uint16_t columns,
   uint16_t rows,
   uint16_t rowOffset,
+  uint16_t length,
   uint8_t hue,
   uint8_t saturation,
   bool invert,
@@ -12,10 +13,11 @@ Spectrum::Spectrum(uint16_t columns,
   this->rowOffset = rowOffset;
   this->invert = invert;
   this->travel = travel;
+  this->length = length;
 }
 
 void Spectrum::display(float* intensities) {
-  for (uint8_t y=0; y<this->rows - this->rowOffset; y++) {
+  for (uint8_t y=0; y<this->rows - this->length; y++) {
     float intensity = intensities[y+2];
     if (intensity < 0.85) {
       continue;
