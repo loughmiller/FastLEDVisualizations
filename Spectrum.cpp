@@ -18,7 +18,7 @@ Spectrum::Spectrum(uint16_t columns,
 
 void Spectrum::display(float* intensities) {
   for (uint8_t y=0; y<this->rows - this->length; y++) {
-    float intensity = intensities[y+2];
+    float intensity = intensities[y+8];  // THIS IS WHERE WE OFFSET LOWER FREQUENCIES
     if (intensity < 0.85) {
       continue;
     }
