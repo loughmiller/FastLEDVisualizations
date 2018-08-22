@@ -14,16 +14,17 @@ Spectrum::Spectrum(uint16_t columns,
   this->invert = invert;
   this->travel = travel;
   this->length = length;
+  this->lightUpThreshold = 0.9;
 }
 
 void Spectrum::display(float* intensities) {
   for (uint8_t y=0; y<this->rows - this->length; y++) {
     float intensity = intensities[y+8];  // THIS IS WHERE WE OFFSET LOWER FREQUENCIES
-    if (intensity < 0.85) {
+    if (intensity < this->lightUpThreshold) {
       continue;
     }
 
-    intensity = (intensity - (0.85)) / 0.15;
+    intensity = (intensity - (this->lightUpThreshold)) / (1 - this->lightUpThreshold);
     uint8_t hue = (this->travel * intensity) + this->hue;
 
     CRGB c = CHSV(hue, this->saturation, 255);

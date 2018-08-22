@@ -8,6 +8,7 @@ class Spectrum : public Visualization {
     uint16_t length;
     bool invert;
     uint8_t travel;
+    float lightUpThreshold;
 
   public :
     Spectrum(uint16_t columns,
