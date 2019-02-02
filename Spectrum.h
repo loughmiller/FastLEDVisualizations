@@ -8,7 +8,7 @@ class Spectrum : public Visualization {
     uint16_t length;
     bool invert;
     uint8_t travel;
-    float lightUpThreshold;
+    float threshold;
 
   public :
     Spectrum(uint16_t columns,
@@ -22,4 +22,6 @@ class Spectrum : public Visualization {
       CRGB * leds);
     void display(float * intensity);
     void setTravel(uint8_t travel);
+    float getThreshold();
+    void setThreshold(float threshold);
 };
