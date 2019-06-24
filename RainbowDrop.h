@@ -4,8 +4,8 @@
 
 class RainbowDrop : public Visualization {
   private :
-    uint8_t rowStep;
-    uint8_t columnStep;
+    uint16_t rowStep;
+    uint16_t columnStep;
     bool lastBeat;
     bool lastBeat2;
 

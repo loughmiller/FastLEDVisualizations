@@ -13,6 +13,7 @@ Visualization::Visualization(uint16_t columns,
   this->frame = 0;
   this->nextTime = 0;
   this->interval = 20;
+  this->value = 255;
 
   this->color = CHSV(hue, saturation, 255);
 }
@@ -38,7 +39,7 @@ uint16_t Visualization::xy2Pos(uint16_t x, uint16_t y) {
 
 void Visualization::setHue(uint8_t hue) {
   this->hue = hue;
-  this->color = CHSV(this->hue, this->saturation, 255);
+  this->color = CHSV(this->hue, this->saturation, this->value);
 }
 
 uint8_t Visualization::getHue() {
@@ -47,7 +48,12 @@ uint8_t Visualization::getHue() {
 
 void Visualization::setSaturation(uint8_t saturation) {
   this->saturation = saturation;
-  this->color = CHSV(this->hue, this->saturation, 255);
+  this->color = CHSV(this->hue, this->saturation, this->value);
+}
+
+void Visualization::setValue(uint8_t value) {
+  this->value = value;
+  this->color = CHSV(this->hue, this->saturation, this->value);
 }
 
 void Visualization::setInterval(uint16_t interval) {
@@ -55,7 +61,7 @@ void Visualization::setInterval(uint16_t interval) {
 }
 
 void Visualization::setAllHue(uint8_t hue) {
-  this->setAllCRGB(CHSV(hue, this->saturation, 255));
+  this->setAllCRGB(CHSV(hue, this->saturation, this->value));
 }
 
 void Visualization::setAllCRGB(CRGB c) {

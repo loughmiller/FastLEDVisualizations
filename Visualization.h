@@ -10,6 +10,7 @@ class Visualization {
     uint16_t rows;
     uint8_t hue;
     uint8_t saturation;
+    uint8_t value;
     CRGB * leds;
 
     CRGB color;
@@ -28,6 +29,7 @@ class Visualization {
     void setLEDColor(uint16_t pos);
     uint16_t xy2Pos(uint16_t x, uint16_t y);
     void setHue(uint8_t hue);
+    void setValue(uint8_t value);
     uint8_t getHue();
     void setSaturation(uint8_t saturation);
     void setInterval(uint16_t interval);
