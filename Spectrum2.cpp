@@ -14,9 +14,10 @@ Spectrum2::Spectrum2(uint16_t columns,
   this->invert = invert;
   this->travel = travel;
   this->length = length;
-  this->threshold = 1000.0;
-  this->peak = 3000.0;
+  this->threshold = 500.0;
+  this->peak = 1000.0;
   this->drift = 0;
+  this->totalMagnitudeMovingAverage = 0;
 }
 
 void Spectrum2::display(float* magnitudes) {
@@ -24,18 +25,22 @@ void Spectrum2::display(float* magnitudes) {
   memcpy(sorted, magnitudes, sizeof(magnitudes[0]) * this->length);
   std::sort(sorted, sorted+sizeof(sorted)/sizeof(sorted[0]));
 
-  float twoThirds = sorted[(uint_fast16_t)(0.9*this->length)];
-  float maxNote = sorted[this->length - 1];
-  this->threshold = (this->threshold * (0.99)) + (twoThirds/100.0);
-  this->peak = (this->peak * (0.99)) + (maxNote/100.0);
+  float cutoffMagnitude = sorted[(uint_fast16_t)(0.75*this->length)];
+  float peakMagnitude = sorted[this->length - 2]; 
+  this->threshold = (this->threshold * (0.998)) + (cutoffMagnitude/500.0);
+  this->peak = (this->peak * (0.998)) + (peakMagnitude/500.0);
 
   float magnitude;
+  float magnitudeSum = 0;
   for (uint8_t y=0; y<this->length; y++) {
+    magnitudeSum += magnitudes[y];
+
     if (magnitudes[y] < this->threshold) {
       continue;
     }
 
     magnitude = ((magnitudes[y] - threshold) / (peak - threshold));
+    magnitude = min(magnitude, 1);
 
     CRGB c = CHSV(this->hue, this->saturation, magnitude*255);
     for (uint8_t x=0; x<this->columns; x++) {
@@ -48,6 +53,13 @@ void Spectrum2::display(float* magnitudes) {
   }
 
   this->hue += this->drift;
+
+  if (magnitudeSum > this->totalMagnitudeMovingAverage * 1.5) {
+    this->hue = 240;
+  }
+
+  this->totalMagnitudeMovingAverage = (this->totalMagnitudeMovingAverage * (0.998)) + (magnitudeSum/500.0);
+
 }
 
 void Spectrum2::setTravel(uint8_t travel) {

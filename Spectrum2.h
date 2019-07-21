@@ -11,7 +11,8 @@ class Spectrum2 : public Visualization {
     uint8_t travel;
     float threshold;
     float peak;
-    uint16_t drift;
+    int16_t drift;
+    float totalMagnitudeMovingAverage;
 
   public :
     Spectrum2(uint16_t columns,
