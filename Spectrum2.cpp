@@ -16,6 +16,7 @@ Spectrum2::Spectrum2(uint16_t columns,
   this->length = length;
   this->threshold = 1000.0;
   this->peak = 3000.0;
+  this->drift = 0;
 }
 
 void Spectrum2::display(float* magnitudes) {
@@ -45,10 +46,16 @@ void Spectrum2::display(float* magnitudes) {
       }
     }
   }
+
+  this->hue += this->drift;
 }
 
 void Spectrum2::setTravel(uint8_t travel) {
   this->travel = travel;
+}
+
+void Spectrum2::setDrift(uint8_t drift) {
+  this->drift = drift;
 }
 
 float Spectrum2::getThreshold() {

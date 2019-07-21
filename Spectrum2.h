@@ -11,6 +11,7 @@ class Spectrum2 : public Visualization {
     uint8_t travel;
     float threshold;
     float peak;
+    uint16_t drift;
 
   public :
     Spectrum2(uint16_t columns,
@@ -24,6 +25,7 @@ class Spectrum2 : public Visualization {
       CRGB * leds);
     void display(float * intensity);
     void setTravel(uint8_t travel);
+    void setDrift(uint8_t drift);
     float getThreshold();
     void setThreshold(float threshold);
 };
