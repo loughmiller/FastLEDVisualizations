@@ -14,10 +14,10 @@ Spectrum2::Spectrum2(uint16_t columns,
   this->invert = invert;
   this->travel = travel;
   this->length = length;
-  this->threshold = 500.0;
-  this->peak = 1000.0;
+  this->threshold = 1000.0;
+  this->peak = 2000.0;
   this->drift = 0;
-  this->totalMagnitudeMovingAverage = 0;
+  this->totalMagnitudeMovingAverage = 20000.0;
 }
 
 void Spectrum2::display(float* magnitudes) {
@@ -25,7 +25,7 @@ void Spectrum2::display(float* magnitudes) {
   memcpy(sorted, magnitudes, sizeof(magnitudes[0]) * this->length);
   std::sort(sorted, sorted+sizeof(sorted)/sizeof(sorted[0]));
 
-  float cutoffMagnitude = sorted[(uint_fast16_t)(0.75*this->length)];
+  float cutoffMagnitude = sorted[(uint_fast16_t)(0.85*this->length)];
   float peakMagnitude = sorted[this->length - 2]; 
   this->threshold = (this->threshold * (0.998)) + (cutoffMagnitude/500.0);
   this->peak = (this->peak * (0.998)) + (peakMagnitude/500.0);
