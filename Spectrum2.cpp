@@ -54,7 +54,7 @@ void Spectrum2::display(float* magnitudes) {
 
   this->hue += this->drift;
 
-  if (magnitudeSum > this->totalMagnitudeMovingAverage * 1.5) {
+  if (this->drift > 0 && magnitudeSum > this->totalMagnitudeMovingAverage * 1.5) {
     this->hue = 240;
   }
 
