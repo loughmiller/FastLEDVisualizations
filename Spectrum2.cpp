@@ -7,13 +7,12 @@ Spectrum2::Spectrum2(uint16_t columns,
   uint8_t hue,
   uint8_t saturation,
   bool invert,
-  uint8_t travel,
   CRGB * leds)
 : Visualization(columns, rows, hue, saturation, leds) {
   this->rowOffset = rowOffset;
   this->invert = invert;
-  this->travel = travel;
   this->length = length;
+  this->density = 0.15;
   this->threshold = 1000.0;
   this->peak = 2000.0;
   this->drift = 0;
@@ -25,7 +24,7 @@ void Spectrum2::display(float* magnitudes) {
   memcpy(sorted, magnitudes, sizeof(magnitudes[0]) * this->length);
   std::sort(sorted, sorted+sizeof(sorted)/sizeof(sorted[0]));
 
-  float cutoffMagnitude = sorted[(uint_fast16_t)(0.85*this->length)];
+  float cutoffMagnitude = sorted[(uint_fast16_t)((1 - this->density)*this->length)];
   float peakMagnitude = sorted[this->length - 2]; 
   this->threshold = (this->threshold * (0.998)) + (cutoffMagnitude/500.0);
   this->peak = (this->peak * (0.998)) + (peakMagnitude/500.0);
@@ -62,18 +61,14 @@ void Spectrum2::display(float* magnitudes) {
 
 }
 
-void Spectrum2::setTravel(uint8_t travel) {
-  this->travel = travel;
-}
-
 void Spectrum2::setDrift(uint8_t drift) {
   this->drift = drift;
 }
 
-float Spectrum2::getThreshold() {
-  return this->threshold;
+float Spectrum2::getDensity() {
+  return this->density;
 }
 
-void Spectrum2::setThreshold(float threshold) {
-  this->threshold = threshold;
+void Spectrum2::setDensity(float density) {
+  this->density = density;
 }
