@@ -28,11 +28,13 @@ void Visualization::setLEDColor(uint16_t pos) {
 
 uint16_t Visualization::xy2Pos(uint16_t x, uint16_t y) {
   uint16_t pos = x * this->rows;
-  if (x % 2 == 0) {
-    pos = pos + y;
-  } else {
-    pos = pos + ((this->rows - 1) - y);
-  }
+  pos = pos + y;
+
+  // if (x % 2 == 0) {
+  //   pos = pos + y;
+  // } else {
+  //   pos = pos + ((this->rows - 1) - y);
+  // }
 
   return pos;
 }

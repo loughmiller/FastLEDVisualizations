@@ -20,17 +20,19 @@ Spectrum2::Spectrum2(uint16_t columns,
 }
 
 void Spectrum2::display(float* magnitudes) {
+
   float sorted[this->length];
   memcpy(sorted, magnitudes, sizeof(magnitudes[0]) * this->length);
   std::sort(sorted, sorted+sizeof(sorted)/sizeof(sorted[0]));
 
   float cutoffMagnitude = sorted[(uint_fast16_t)((1 - this->density)*this->length)];
-  float peakMagnitude = sorted[this->length - 2]; 
-  this->threshold = (this->threshold * (0.998)) + (cutoffMagnitude/500.0);
-  this->peak = (this->peak * (0.998)) + (peakMagnitude/500.0);
+  float peakMagnitude = sorted[this->length - 2];
+  this->threshold = (this->threshold * (0.9998)) + (cutoffMagnitude/5000.0);
+  this->peak = (this->peak * (0.9998)) + (peakMagnitude/5000.0);
 
   float magnitude;
   float magnitudeSum = 0;
+
   for (uint8_t y=0; y<this->length; y++) {
     magnitudeSum += magnitudes[y];
 
@@ -53,11 +55,11 @@ void Spectrum2::display(float* magnitudes) {
 
   this->hue += this->drift;
 
-  if (this->drift > 0 && magnitudeSum > this->totalMagnitudeMovingAverage * 1.5) {
+  if (this->drift > 0 && magnitudeSum > this->totalMagnitudeMovingAverage * 1.75) {
     this->hue = 240;
   }
 
-  this->totalMagnitudeMovingAverage = (this->totalMagnitudeMovingAverage * (0.998)) + (magnitudeSum/500.0);
+  this->totalMagnitudeMovingAverage = (this->totalMagnitudeMovingAverage * (0.9998)) + (magnitudeSum/5000.0);
 
 }
 
