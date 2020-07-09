@@ -13,6 +13,7 @@ class Spectrum2 : public Visualization {
     float peak;
     int16_t drift;
     float totalMagnitudeMovingAverage;
+    uint_fast32_t loggingTimestamp = 0;
 
   public :
     Spectrum2(uint16_t columns,

@@ -61,6 +61,28 @@ void Spectrum2::display(float* magnitudes) {
 
   this->totalMagnitudeMovingAverage = (this->totalMagnitudeMovingAverage * (0.9998)) + (magnitudeSum/5000.0);
 
+
+  // uint_fast32_t currentTime = millis();
+
+  // // put things we want to log here
+  // if (currentTime > this->loggingTimestamp + 5000) {
+  //   this->loggingTimestamp = currentTime;
+
+  //   Serial.print(cutoffMagnitude);
+  //   Serial.print("\t");
+  //   Serial.print(peakMagnitude);
+  //   Serial.print("\t");
+  //   Serial.print(this->threshold);
+  //   Serial.print("\t");
+  //   Serial.print(this->peak);
+  //   Serial.print("\t");
+  //   Serial.print(this->hue);
+  //   Serial.print("\t");
+  //   Serial.print(magnitudeSum);
+  //   Serial.print("\t");
+  //   Serial.print(this->totalMagnitudeMovingAverage);
+  //   Serial.println("");
+  // }
 }
 
 void Spectrum2::setDrift(uint8_t drift) {
