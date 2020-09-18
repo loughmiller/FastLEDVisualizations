@@ -29,8 +29,8 @@ void Spectrum2::display(float* magnitudes) {
 
   float cutoffMagnitude = sorted[(uint_fast16_t)((1 - this->density)*this->length)];
   float peakMagnitude = sorted[this->length - 2];
-  this->threshold = (this->threshold * (0.9998)) + (cutoffMagnitude/5000.0);
-  this->peak = (this->peak * (0.9998)) + (peakMagnitude/5000.0);
+  this->threshold = (this->threshold * (0.998)) + (cutoffMagnitude/500.0);
+  this->peak = (this->peak * (0.998)) + (peakMagnitude/500.0);
 
   float magnitude;
   float magnitudeSum = 0;
@@ -98,7 +98,7 @@ void Spectrum2::display(float* magnitudes) {
   if (currentTime > this->loggingTimestamp + 5000) {
     this->loggingTimestamp = currentTime;
 
-    Serial.print(peakCount);
+    // Serial.print(peakCount);
     // Serial.print(cutoffMagnitude);
     // Serial.print("\t");
     // Serial.print(peakMagnitude);
@@ -112,7 +112,7 @@ void Spectrum2::display(float* magnitudes) {
     // Serial.print(magnitudeSum);
     // Serial.print("\t");
     // Serial.print(this->totalMagnitudeMovingAverage);
-    Serial.println("");
+    // Serial.println("");
   }
 }
 
