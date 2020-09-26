@@ -27,10 +27,12 @@ void Spectrum2::display(float* magnitudes) {
   memcpy(sorted, magnitudes, sizeof(magnitudes[0]) * this->length);
   std::sort(sorted, sorted+sizeof(sorted)/sizeof(sorted[0]));
 
+  const float alpha = 0.9;
+
   float cutoffMagnitude = sorted[(uint_fast16_t)((1 - this->density)*this->length)];
   float peakMagnitude = sorted[this->length - 2];
-  this->threshold = (this->threshold * (0.998)) + (cutoffMagnitude/500.0);
-  this->peak = (this->peak * (0.998)) + (peakMagnitude/500.0);
+  this->threshold = (this->threshold * alpha) + (cutoffMagnitude* (1 - alpha));
+  this->peak = (this->peak * alpha) + (peakMagnitude * (1 - alpha));
 
   float magnitude;
   float magnitudeSum = 0;
