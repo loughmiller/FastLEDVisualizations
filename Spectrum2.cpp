@@ -84,7 +84,9 @@ void Spectrum2::display(float* magnitudes) {
     }
   }
 
-  this->hue += this->drift;
+  uint_fast32_t currentTime = millis();
+
+  this->hue = (currentTime / this->drift) % 256;
 
   // Change hue to pink on big volume increases
   if (this->drift > 0 && magnitudeSum > this->totalMagnitudeMovingAverage * 1.75) {
@@ -93,8 +95,6 @@ void Spectrum2::display(float* magnitudes) {
 
   this->totalMagnitudeMovingAverage = (this->totalMagnitudeMovingAverage * (0.9998)) + (magnitudeSum/5000.0);
 
-
-  uint_fast32_t currentTime = millis();
 
   // put things we want to log here
   if (currentTime > this->loggingTimestamp + 5000) {
