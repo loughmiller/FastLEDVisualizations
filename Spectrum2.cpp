@@ -13,10 +13,10 @@ Spectrum2::Spectrum2(uint16_t columns,
   this->invert = invert;
   this->length = length;
   this->density = 0.06;
-  this->threshold = 1000.0;
-  this->peak = 2000.0;
+  this->threshold = 500.0;
+  this->peak = 1000.0;
   this->drift = 0;
-  this->totalMagnitudeMovingAverage = 20000.0;
+  this->totalMagnitudeMovingAverage = 3400.0;
 }
 
 void Spectrum2::display(float* magnitudes) {
@@ -128,4 +128,8 @@ float Spectrum2::getDensity() {
 
 void Spectrum2::setDensity(float density) {
   this->density = density;
+}
+
+float Spectrum2::getMagnitude() {
+  return this->totalMagnitudeMovingAverage;
 }

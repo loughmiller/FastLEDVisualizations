@@ -28,4 +28,5 @@ class Spectrum2 : public Visualization {
     void setDrift(uint8_t drift);
     float getDensity();
     void setDensity(float density);
+    float getMagnitude();
 };
