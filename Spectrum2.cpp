@@ -12,9 +12,9 @@ Spectrum2::Spectrum2(uint16_t columns,
   this->rowOffset = rowOffset;
   this->invert = invert;
   this->length = length;
-  this->density = 0.06;
-  this->threshold = 500.0;
-  this->peak = 1000.0;
+  this->density = 0.125;
+  this->threshold = 1000.0;
+  this->peak = 2000.0;
   this->drift = 0;
   this->totalMagnitudeMovingAverage = 3250.0;
 }
@@ -86,7 +86,9 @@ void Spectrum2::display(float* magnitudes) {
 
   uint_fast32_t currentTime = millis();
 
-  this->hue = (currentTime / this->drift) % 256;
+  if (this->drift > 0) {
+    this->hue = (currentTime / this->drift) % 256;
+  }
 
   // Change hue to pink on big volume increases
   if (this->drift > 0 && magnitudeSum > this->totalMagnitudeMovingAverage * 1.75) {
