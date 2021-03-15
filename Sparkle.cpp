@@ -4,16 +4,19 @@ Sparkle::Sparkle (uint16_t ledCount,
   uint8_t hue,
   uint8_t saturation,
   CRGB * leds,
-  uint16_t emptyness)
-: Visualization(ledCount, 1, hue, saturation, leds)
-{
-  this->emptyness = emptyness;
+  uint32_t emptiness)
+: Visualization(ledCount, 1, hue, saturation, leds) {
+    this->emptiness = emptiness;
 }
 
 void Sparkle::display () {
-  uint16_t i = random(this->emptyness);
+  uint32_t i = random(this->emptiness);
   while (i < this->rows*this->columns) {
     this->setLEDColor(i);
-    i = i + random(this->emptyness);
+    i = i + random(this->emptiness);
   }
+}
+
+void Sparkle::setEmptiness(uint32_t emptiness) {
+  this->emptiness = emptiness;
 }
