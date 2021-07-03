@@ -12,7 +12,7 @@ Spectrum2::Spectrum2(uint16_t columns,
   this->rowOffset = rowOffset;
   this->invert = invert;
   this->length = length;
-  this->density = 0.125;
+  this->density = 0.8;
   this->threshold = 1000.0;
   this->peak = 2000.0;
   this->drift = 0;
