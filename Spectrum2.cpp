@@ -16,7 +16,7 @@ Spectrum2::Spectrum2(uint16_t columns,
   this->threshold = 1000.0;
   this->peak = 2000.0;
   this->drift = 0;
-  this->totalMagnitudeMovingAverage = 3250.0;
+  this->totalMagnitudeMovingAverage = 10000.0;
 }
 
 void Spectrum2::display(float* magnitudes) {
