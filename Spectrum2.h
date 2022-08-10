@@ -13,7 +13,13 @@ class Spectrum2 : public Visualization {
     float peak;
     int16_t drift;
     float totalMagnitudeMovingAverage;
+    float lowPassPeakMovingAverage;
+    float lowPassTroughMovingAverage;
+    float lowPassMovingAverage;
     uint_fast32_t loggingTimestamp = 0;
+    bool fill;
+    void displayRow(uint8_t y, CRGB color);
+    uint8_t lowPassCount = 4;
 
   public :
     Spectrum2(uint16_t columns,
@@ -23,6 +29,7 @@ class Spectrum2 : public Visualization {
       uint8_t hue,
       uint8_t saturation,
       bool invert,
+      bool fill,
       CRGB * leds);
     void display(float * intensity);
     void setDrift(uint8_t drift);
