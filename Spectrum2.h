@@ -11,7 +11,7 @@ class Spectrum2 : public Visualization {
     float density;
     float threshold;
     float peak;
-    int16_t drift;
+    uint_fast32_t drift;
     float totalMagnitudeMovingAverage;
     float lowPassPeakMovingAverage;
     float lowPassTroughMovingAverage;
@@ -32,7 +32,7 @@ class Spectrum2 : public Visualization {
       bool fill,
       CRGB * leds);
     void display(float * intensity);
-    void setDrift(uint8_t drift);
+    void setDrift(uint_fast32_t drift);
     float getDensity();
     void setDensity(float density);
     float getMagnitude();

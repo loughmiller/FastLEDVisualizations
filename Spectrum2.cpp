@@ -181,7 +181,7 @@ void Spectrum2::display(float* magnitudes) {
   // }
 }
 
-void Spectrum2::setDrift(uint8_t drift) {
+void Spectrum2::setDrift(uint_fast32_t drift) {
   this->drift = drift;
 }
 
