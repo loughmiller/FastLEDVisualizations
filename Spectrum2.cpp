@@ -8,8 +8,8 @@ Spectrum2::Spectrum2(uint16_t columns,
   uint8_t saturation,
   bool invert,
   bool fill,
-  CRGB * leds)
-: Visualization(columns, rows, hue, saturation, leds) {
+  CRGB * leds,
+  uint8_t drift = 64) : Visualization(columns, rows, hue, saturation, leds, drift) {
   this->rowOffset = rowOffset;
   this->invert = invert;
   this->length = length;
@@ -142,10 +142,6 @@ void Spectrum2::display(float* magnitudes) {
     }
   }
 
-  if (this->drift > 0) {
-    this->hue = (currentTime / this->drift) % 256;
-  }
-
   // Change hue to pink on big volume increases
   // if (this->drift > 0 && magnitudeSum > this->totalMagnitudeMovingAverage * 1.75) {
   //   this->hue = 240;
@@ -179,10 +175,6 @@ void Spectrum2::display(float* magnitudes) {
 
   //   Serial.println("");
   // }
-}
-
-void Spectrum2::setDrift(uint_fast32_t drift) {
-  this->drift = drift;
 }
 
 float Spectrum2::getDensity() {

@@ -30,9 +30,9 @@ class Spectrum2 : public Visualization {
       uint8_t saturation,
       bool invert,
       bool fill,
-      CRGB * leds);
+      CRGB * leds,
+      uint8_t drift = 64);
     void display(float * intensity);
-    void setDrift(uint_fast32_t drift);
     float getDensity();
     void setDensity(float density);
     float getMagnitude();

@@ -4,7 +4,8 @@ Visualization::Visualization(uint16_t columns,
   uint16_t rows,
   uint8_t hue,
   uint8_t saturation,
-  CRGB * leds) {
+  CRGB * leds,
+  uint8_t drift = 64) {
   this->columns = columns;
   this->rows = rows;
   this->leds = leds;
@@ -72,5 +73,16 @@ void Visualization::setAllCRGB(CRGB c) {
       uint16_t pos = this->xy2Pos(x, y);
       this->leds[pos] = c;
     }
+  }
+}
+
+void Visualization::setDrift(uint8_t drift) {
+  this->drift = drift;
+  this->driftms = pow(this->drift / 4, 2);
+}
+
+void Visualization::driftLoop(uint32_t driftSync) {
+  if (this->drift > 0) {
+    this->hue = (driftSync / this->driftms) % 256;
   }
 }
