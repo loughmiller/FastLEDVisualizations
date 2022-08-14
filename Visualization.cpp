@@ -5,7 +5,7 @@ Visualization::Visualization(uint16_t columns,
   uint8_t hue,
   uint8_t saturation,
   CRGB * leds,
-  uint8_t drift = 64) {
+  uint8_t drift) {
   this->columns = columns;
   this->rows = rows;
   this->leds = leds;

@@ -9,7 +9,7 @@ Spectrum2::Spectrum2(uint16_t columns,
   bool invert,
   bool fill,
   CRGB * leds,
-  uint8_t drift = 64) : Visualization(columns, rows, hue, saturation, leds, drift) {
+  uint8_t drift) : Visualization(columns, rows, hue, saturation, leds, drift) {
   this->rowOffset = rowOffset;
   this->invert = invert;
   this->length = length;
