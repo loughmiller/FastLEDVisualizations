@@ -81,7 +81,12 @@ void Visualization::setDrift(uint8_t drift) {
   this->driftms = pow(this->drift / 4, 2);
 }
 
-void Visualization::driftLoop(uint32_t driftSync) {
+void Visualization::setDriftOffset(uint32_t driftOffset) {
+  this->driftOffset = driftOffset;
+}
+
+void Visualization::driftLoop(uint32_t currentTime) {
+  uint32_t driftSync = abs(this->driftOffset - currentTime);
   if (this->drift > 0) {
     this->hue = (driftSync / this->driftms) % 256;
   }

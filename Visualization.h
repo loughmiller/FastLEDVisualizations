@@ -20,6 +20,7 @@ class Visualization {
 
     uint8_t drift;
     uint32_t driftms;
+    uint32_t driftOffset;
 
   public :
     Visualization(uint16_t columns,
@@ -40,6 +41,7 @@ class Visualization {
     void setAllHue(uint8_t hue);
     void setAllCRGB(CRGB c);
     void setDrift(uint8_t drift);
+    void setDriftOffset(uint32_t driftOffset);
     void driftLoop(uint32_t driftSync);
 };
 
