@@ -41,6 +41,8 @@ class Visualization {
     void setSaturation(uint8_t saturation);
     void setInterval(uint16_t interval);
     void setAllHue(uint8_t hue);
+    void setAll();
+    void clearAll();
     void setAllCRGB(CRGB c);
     void setDrift(uint8_t drift);
     void setDriftOffset(uint32_t driftOffset);

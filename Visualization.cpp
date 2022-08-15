@@ -67,6 +67,14 @@ void Visualization::setAllHue(uint8_t hue) {
   this->setAllCRGB(CHSV(hue, this->saturation, this->value));
 }
 
+void Visualization::setAll() {
+  this->setAllCRGB(CHSV(this->hue, this->saturation, this->value));
+}
+
+void Visualization::clearAll() {
+  this->setAllCRGB(0x000000);
+}
+
 void Visualization::setAllCRGB(CRGB c) {
   for (uint16_t y=0; y<this->rows; y++) {
     for (uint16_t x=0; x<this->columns; x++) {
