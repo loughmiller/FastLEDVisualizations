@@ -22,6 +22,8 @@ class Visualization {
     uint32_t driftms;
     uint32_t driftOffset;
 
+    uint32_t lastLog = 0;
+
   public :
     Visualization(uint16_t columns,
       uint16_t rows,

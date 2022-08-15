@@ -15,8 +15,8 @@ Visualization::Visualization(uint16_t columns,
   this->nextTime = 0;
   this->interval = 20;
   this->value = 255;
-
   this->color = CHSV(hue, saturation, 255);
+  this->setDrift(drift);
 }
 
 void Visualization::setLEDColorXY(uint16_t x, uint16_t y) {
@@ -82,12 +82,41 @@ void Visualization::setDrift(uint8_t drift) {
 }
 
 void Visualization::setDriftOffset(uint32_t driftOffset) {
-  this->driftOffset = driftOffset;
+  uint32_t newDriftOffset = abs(driftOffset - millis());
+
+  // Serial.print(millis());
+  // Serial.print("\t");
+  // Serial.print(this->driftOffset);
+  // Serial.print("\t");
+  // Serial.print(newDriftOffset);
+  // Serial.print("\t");
+  // Serial.print((int)newDriftOffset - (int)this->driftOffset);
+  // Serial.println();
+
+  this->driftOffset = newDriftOffset;
+
 }
 
 void Visualization::driftLoop(uint32_t currentTime) {
-  uint32_t driftSync = abs(this->driftOffset - currentTime);
+  uint32_t driftSync = this->driftOffset + currentTime;
+
   if (this->drift > 0) {
-    this->hue = (driftSync / this->driftms) % 256;
+    this->setHue((driftSync / this->driftms) % 256);
   }
+
+  // if (currentTime > lastLog + 5000) {
+  //   Serial.print(currentTime);
+  //   Serial.print("\t");
+  //   Serial.print(this->drift);
+  //   Serial.print("\t");
+  //   Serial.print(this->driftms);
+  //   Serial.print("\t");
+  //   Serial.print(this->driftOffset);
+  //   Serial.print("\t");
+  //   Serial.print(driftSync);
+  //   Serial.print("\t");
+  //   Serial.print(this->hue);
+  //   Serial.println();
+  //   lastLog = currentTime;
+  // }
 }

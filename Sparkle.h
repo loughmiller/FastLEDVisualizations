@@ -13,6 +13,6 @@ class Sparkle : public Visualization {
       CRGB * leds,
       uint32_t emptiness);
 
-    void display();
+    void display(uint32_t currentTime);
     void setEmptiness(uint32_t emptiness);
 };
