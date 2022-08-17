@@ -60,6 +60,10 @@ void Visualization::setValue(uint8_t value) {
   this->color = CHSV(this->hue, this->saturation, this->value);
 }
 
+uint8_t Visualization::getValue() {
+  return this->value;
+}
+
 void Visualization::setInterval(uint16_t interval) {
   this->interval = interval;
 }
