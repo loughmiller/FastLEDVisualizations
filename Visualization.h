@@ -20,7 +20,9 @@ class Visualization {
 
     uint8_t drift;
     uint32_t driftms;
-    uint32_t driftOffset;
+    uint32_t driftOffset = 0;
+    uint32_t lastDriftOffset = 0;
+    uint32_t lastDriftUpdate = 0;
 
     uint32_t lastLog = 0;
 
@@ -45,7 +47,7 @@ class Visualization {
     void clearAll();
     void setAllCRGB(CRGB c);
     void setDrift(uint8_t drift);
-    void setDriftOffset(uint32_t driftOffset);
+    void setDriftOffset(uint32_t currentTime, uint32_t driftOffset);
     void driftLoop(uint32_t driftSync);
 };
 

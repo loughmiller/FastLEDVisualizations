@@ -17,6 +17,7 @@ Visualization::Visualization(uint16_t columns,
   this->value = 255;
   this->color = CHSV(hue, saturation, 255);
   this->setDrift(drift);
+  this->driftOffset = 0;
 }
 
 void Visualization::setLEDColorXY(uint16_t x, uint16_t y) {

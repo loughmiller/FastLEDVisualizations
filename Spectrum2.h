@@ -11,7 +11,6 @@ class Spectrum2 : public Visualization {
     float density;
     float threshold;
     float peak;
-    uint_fast32_t drift;
     float totalMagnitudeMovingAverage;
     float lowPassPeakMovingAverage;
     float lowPassTroughMovingAverage;
