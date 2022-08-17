@@ -9,14 +9,13 @@ Spectrum2::Spectrum2(uint16_t columns,
   bool invert,
   bool fill,
   CRGB * leds,
-  uint8_t drift) : Visualization(columns, rows, hue, saturation, leds, drift) {
+  uint8_t cycle) : Visualization(columns, rows, hue, saturation, leds, cycle) {
   this->rowOffset = rowOffset;
   this->invert = invert;
   this->length = length;
   this->density = 0.08;
   this->threshold = 1000.0;
   this->peak = 2000.0;
-  this->drift = 0;
   this->totalMagnitudeMovingAverage = 10000.0;
   this->fill = fill;
   this->lowPassPeakMovingAverage = 20000.0;
@@ -143,7 +142,7 @@ void Spectrum2::display(float* magnitudes) {
   }
 
   // Change hue to pink on big volume increases
-  // if (this->drift > 0 && magnitudeSum > this->totalMagnitudeMovingAverage * 1.75) {
+  // if (this->cycle > 0 && magnitudeSum > this->totalMagnitudeMovingAverage * 1.75) {
   //   this->hue = 240;
   // }
 
@@ -153,7 +152,7 @@ void Spectrum2::display(float* magnitudes) {
 
   //     Serial.print(currentTime);
   //     Serial.print("\t");
-  //     Serial.print(this->drift);
+  //     Serial.print(this->cycle);
   //     Serial.print("\t");
   //     Serial.print(this->hue);
 

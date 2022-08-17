@@ -5,7 +5,7 @@ Visualization::Visualization(uint16_t columns,
   uint8_t hue,
   uint8_t saturation,
   CRGB * leds,
-  uint8_t drift) {
+  uint8_t cycle) {
   this->columns = columns;
   this->rows = rows;
   this->leds = leds;
@@ -16,8 +16,8 @@ Visualization::Visualization(uint16_t columns,
   this->interval = 20;
   this->value = 255;
   this->color = CHSV(hue, saturation, 255);
-  this->setDrift(drift);
-  this->driftOffset = 0;
+  this->setCycle(cycle);
+  this->cycleOffset = 0;
 }
 
 void Visualization::setLEDColorXY(uint16_t x, uint16_t y) {
@@ -89,47 +89,79 @@ void Visualization::setAllCRGB(CRGB c) {
   }
 }
 
-void Visualization::setDrift(uint8_t drift) {
-  this->drift = drift;
-  this->driftms = pow(this->drift / 4, 2);
+void Visualization::setCycle(uint8_t cycle) {
+  this->cycle = cycle;
+  this->cyclems = pow(this->cycle / 4, 2);
 }
 
-void Visualization::setDriftOffset(uint32_t driftOffset) {
-  uint32_t newDriftOffset = abs(driftOffset - millis());
+void Visualization::synchronize(uint32_t currentTime, uint32_t sync) {
+  uint32_t cycleSync = this->sync +
+  ((currentTime - this->lastSyncTime) * this->driftRatio);
 
-  // Serial.print(millis());
-  // Serial.print("\t");
-  // Serial.print(this->driftOffset);
-  // Serial.print("\t");
-  // Serial.print(newDriftOffset);
-  // Serial.print("\t");
-  // Serial.print((int)newDriftOffset - (int)this->driftOffset);
-  // Serial.println();
+  uint32_t lastCycleOffset = this->cycleOffset;
 
-  this->driftOffset = newDriftOffset;
+  this->lastSync = this->sync;
 
-}
-
-void Visualization::driftLoop(uint32_t currentTime) {
-  uint32_t driftSync = this->driftOffset + currentTime;
-
-  if (this->drift > 0) {
-    this->setHue((driftSync / this->driftms) % 256);
+  // don't calculate drift on the first loop
+  float lastDriftRatio = (float)(sync - this->lastSync) / (float)(currentTime - this->lastSyncTime);
+  if (this->sync == 0) {
+    // don't do anything on the first pass
+  } else if (this->sync != 0 && this->driftRatio == 1.0) {
+    // second pass, just set the drift
+    this->driftRatio = lastDriftRatio;
+  } else {
+    // use a moving average
+    this->driftRatio = (this->driftRatio * 0.9) + (lastDriftRatio * 0.1);
   }
 
-  // if (currentTime > lastLog + 5000) {
-  //   Serial.print(currentTime);
-  //   Serial.print("\t");
-  //   Serial.print(this->drift);
-  //   Serial.print("\t");
-  //   Serial.print(this->driftms);
-  //   Serial.print("\t");
-  //   Serial.print(this->driftOffset);
-  //   Serial.print("\t");
-  //   Serial.print(driftSync);
-  //   Serial.print("\t");
-  //   Serial.print(this->hue);
-  //   Serial.println();
-  //   lastLog = currentTime;
-  // }
+
+
+  this->sync = sync;
+
+
+  // Serial.print(this->lastSyncTime);
+  // Serial.print("\t");
+  // Serial.print(this->lastSync);
+  // Serial.print("\t");
+  // Serial.print(currentTime);
+  // Serial.print("\t");
+  // Serial.print(this->sync);
+  // Serial.print("\t");
+  // Serial.print((int)currentTime - (int)this->lastSyncTime);
+  // Serial.print("\t");
+  // Serial.print((int)this->sync - (int)this->lastSync);
+  // Serial.print("\t");
+  // Serial.print(this->driftRatio);
+  // Serial.print("\t");
+  // Serial.print(cycleSync);
+  // Serial.print("\t");
+  // Serial.print((int)cycleSync - (int)sync);
+  // Serial.println();
+
+  this->lastSyncTime = currentTime;
+}
+
+void Visualization::cycleLoop(uint32_t currentTime) {
+  uint32_t cycleSync = this->sync +
+    ((currentTime - this->lastSyncTime) * this->driftRatio);
+
+  if (this->cycle > 0) {
+    this->setHue((cycleSync / this->cyclems) % 256);
+  }
+
+  if (currentTime > lastLog + 1000) {
+    Serial.print(currentTime);
+    Serial.print("\t");
+    Serial.print(this->cycle);
+    Serial.print("\t");
+    Serial.print(this->cyclems);
+    Serial.print("\t");
+    Serial.print(this->sync);
+    Serial.print("\t");
+    Serial.print(cycleSync);
+    Serial.print("\t");
+    Serial.print(this->hue);
+    Serial.println();
+    lastLog = currentTime;
+  }
 }

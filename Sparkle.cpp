@@ -10,7 +10,7 @@ Sparkle::Sparkle (uint16_t ledCount,
 }
 
 void Sparkle::display (uint32_t currentTime) {
-  this->driftLoop(currentTime);
+  this->cycleLoop(currentTime);
   uint32_t i = random(this->emptiness);
   while (i < this->rows*this->columns) {
     this->setLEDColor(i);

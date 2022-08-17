@@ -18,11 +18,13 @@ class Visualization {
     uint32_t nextTime;
     uint16_t interval;
 
-    uint8_t drift;
-    uint32_t driftms;
-    uint32_t driftOffset = 0;
-    uint32_t lastDriftOffset = 0;
-    uint32_t lastDriftUpdate = 0;
+    uint8_t cycle;
+    uint32_t cyclems;
+    uint32_t cycleOffset = 0;
+    uint32_t sync = 0;
+    uint32_t lastSync = 0;
+    uint32_t lastSyncTime = 0;
+    float driftRatio = 1.0;
 
     uint32_t lastLog = 0;
 
@@ -32,7 +34,7 @@ class Visualization {
       uint8_t hue,
       uint8_t saturation,
       CRGB * leds,
-      uint8_t drift = 64);
+      uint8_t cycle = 64);
     void display(unsigned long currentTime);
     void setLEDColorXY(uint16_t x, uint16_t y);
     void setLEDColor(uint16_t pos);
@@ -47,9 +49,9 @@ class Visualization {
     void setAll();
     void clearAll();
     void setAllCRGB(CRGB c);
-    void setDrift(uint8_t drift);
-    void setDriftOffset(uint32_t currentTime, uint32_t driftOffset);
-    void driftLoop(uint32_t driftSync);
+    void setCycle(uint8_t cycle);
+    void synchronize(uint32_t currentTime, uint32_t sync);
+    void cycleLoop(uint32_t currentTime);
 };
 
 #endif /* VISUALIZATION_H */
