@@ -76,6 +76,16 @@ void Visualization::setAll() {
   this->setAllCRGB(CHSV(this->hue, this->saturation, this->value));
 }
 
+void Visualization::setHalf() {
+  CRGB c = CHSV(this->hue, this->saturation, this->value);
+  for (uint16_t y=0; y<this->rows; y++) {
+    for (uint16_t x=0; x<this->columns; x+=2) {
+      uint16_t pos = this->xy2Pos(x, y);
+      this->leds[pos] = c;
+    }
+  }
+}
+
 void Visualization::clearAll() {
   this->setAllCRGB(0x000000);
 }
@@ -149,19 +159,19 @@ void Visualization::cycleLoop(uint32_t currentTime) {
     this->setHue((cycleSync / this->cyclems) % 256);
   }
 
-  if (currentTime > lastLog + 1000) {
-    Serial.print(currentTime);
-    Serial.print("\t");
-    Serial.print(this->cycle);
-    Serial.print("\t");
-    Serial.print(this->cyclems);
-    Serial.print("\t");
-    Serial.print(this->sync);
-    Serial.print("\t");
-    Serial.print(cycleSync);
-    Serial.print("\t");
-    Serial.print(this->hue);
-    Serial.println();
-    lastLog = currentTime;
-  }
+  // if (currentTime > lastLog + 3000) {
+  //   Serial.print(currentTime);
+  //   Serial.print("\t");
+  //   Serial.print(this->cycle);
+  //   Serial.print("\t");
+  //   Serial.print(this->cyclems);
+  //   Serial.print("\t");
+  //   Serial.print(this->sync);
+  //   Serial.print("\t");
+  //   Serial.print(cycleSync);
+  //   Serial.print("\t");
+  //   Serial.print(this->hue);
+  //   Serial.println();
+  //   lastLog = currentTime;
+  // }
 }

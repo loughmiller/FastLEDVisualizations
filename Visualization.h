@@ -47,6 +47,7 @@ class Visualization {
     void setInterval(uint16_t interval);
     void setAllHue(uint8_t hue);
     void setAll();
+    void setHalf();
     void clearAll();
     void setAllCRGB(CRGB c);
     void setCycle(uint8_t cycle);
