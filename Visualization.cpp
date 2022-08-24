@@ -119,15 +119,14 @@ void Visualization::synchronize(uint32_t currentTime, uint32_t sync) {
   } else if (this->sync != 0 && this->driftRatio == 1.0) {
     // second pass, just set the drift
     this->driftRatio = lastDriftRatio;
+  } else if (abs((int)cycleSync - (int)sync) > 10000) {
+    this->driftRatio = lastDriftRatio;
   } else {
     // use a moving average
     this->driftRatio = (this->driftRatio * 0.9) + (lastDriftRatio * 0.1);
   }
 
-
-
   this->sync = sync;
-
 
   // Serial.print(this->lastSyncTime);
   // Serial.print("\t");
