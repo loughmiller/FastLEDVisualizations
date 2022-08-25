@@ -113,14 +113,16 @@ void Visualization::synchronize(uint32_t currentTime, uint32_t sync) {
   this->lastSync = this->sync;
 
   // don't calculate drift on the first loop
-  float lastDriftRatio = (float)(sync - this->lastSync) / (float)(currentTime - this->lastSyncTime);
+  float lastDriftRatio =
+    (float)(sync - this->lastSync) / (float)(currentTime - this->lastSyncTime);
+
   if (this->sync == 0) {
     // don't do anything on the first pass
   } else if (this->sync != 0 && this->driftRatio == 1.0) {
     // second pass, just set the drift
     this->driftRatio = lastDriftRatio;
   } else if (abs((int)cycleSync - (int)sync) > 10000) {
-    this->driftRatio = lastDriftRatio;
+    this->driftRatio = 1.0;
   } else {
     // use a moving average
     this->driftRatio = (this->driftRatio * 0.9) + (lastDriftRatio * 0.1);
