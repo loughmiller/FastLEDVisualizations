@@ -102,6 +102,8 @@ void Visualization::setAllCRGB(CRGB c) {
 void Visualization::setCycle(uint8_t cycle) {
   this->cycle = cycle;
   this->cyclems = pow(this->cycle / 4, 2);
+  // Serial.print("cycles ms: ");
+  // Serial.println(this->cyclems);
 }
 
 void Visualization::synchronize(uint32_t currentTime, uint32_t sync) {
