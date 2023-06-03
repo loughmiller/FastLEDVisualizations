@@ -41,8 +41,9 @@ void Streak::display (unsigned long currentTime) {
   int pos;
   for (uint8_t i=0; i<this->length; i++) {
     if ((y - i >= 0) && (y - i < this->rows)) {
+      // this->setLEDColorXY(this->column, y - i);
       pos = this->xy2Pos(this->column, y - i);
-      this->leds[pos] = this->color;
+      this->leds[pos] = CHSV(this->hue, this->saturation, this->value);
 
       if (this->fade) {
         this->leds[pos].fadeLightBy((256 / this->length) * i);
