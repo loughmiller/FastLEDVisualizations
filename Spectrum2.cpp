@@ -63,8 +63,8 @@ void Spectrum2::display(float* magnitudes) {
     for (uint8_t column=0; column<this->columns; column++) {
       magnitude = magnitudes[column];
       ratio = magnitude / this->peak;
-      height = min(this->length, this->length * ratio);
-      uint_fast8_t intensity = min(ratio * 200, 200);
+      height = min((float) this->length, this->length * ratio);
+      uint_fast8_t intensity = min(ratio * 200, (float) 200);
 
       for (uint8_t row=0; row<height; row++) {
         if (this->invert) {
@@ -109,8 +109,8 @@ void Spectrum2::display(float* magnitudes) {
       }
 
       magnitude = ((magnitudes[y] - this->threshold) / (this->peak - this->threshold));
-      magnitude = min(magnitude, 1);
-      magnitude = max(magnitude, 0.15);
+      magnitude = min(magnitude, (float) 1);
+      magnitude = max(magnitude, (float) 0.15);
 
       CRGB c = CHSV(this->hue, this->saturation, magnitude*255);
       CRGB c2 = CHSV(this->hue, this->saturation, magnitude*128);

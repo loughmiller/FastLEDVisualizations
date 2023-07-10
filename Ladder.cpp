@@ -27,7 +27,7 @@ void Ladder::display (unsigned long currentTime) {
     // Serial.println(currentTime);
     this->frame++;
     this->nextTime = currentTime + this->interval;
-    this->interval = max(this->interval * 0.96, MIN_INTERVAL);
+    this->interval = max(int(this->interval * 0.96), MIN_INTERVAL);
   }
 
   uint8_t y = this->rows - (currentFrame + 1);
